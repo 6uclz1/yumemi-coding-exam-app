@@ -1,6 +1,5 @@
 import React, {useState, useLayoutEffect } from 'react'
-
-// import PrefPopulationChartLine from "./PrefPopulationChartLine";
+import "./PrefCharts.css";
 
 import {
     LineChart,
@@ -42,7 +41,15 @@ const PrefCharts = (props:any) => {
         // setData(a);
         let gDataList:any = [];
 
-        const yearList: any = [1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030, 2035, 2040, 2045];
+        let yearList: any = [];
+        // let yearList: any = [1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030, 2035, 2040, 2045];
+
+        for (const [, value] of Object.entries(data)) {
+            // console.log(key);
+            // console.log(value);
+            const v:any = value;
+            yearList = v.map((v: { year: any; }) => v.year);
+        }
 
         for (const year of yearList) {
             let populationObject:any = {year: year}
@@ -60,21 +67,21 @@ const PrefCharts = (props:any) => {
     },[props,data])
 
     return (
-        <div>
+        <div className='PrefCharts'>
             <LineChart
-              width={1200}
-              height={800}
+              width={1080}
+              height={720}
               data={graphData}
               margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5
+                top: 30,
+                right: 40,
+                left: 30,
+                bottom: 10
               }}
             >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
-            <YAxis />
+            <XAxis dataKey="year" height={30} padding={{ left: 30, right: 30 }} angle={-20} />
+            <YAxis padding={{ top: 20, bottom: 20 }} />
             <Tooltip />
             <Legend />
             {Object.entries(props.prefList).map(([key, value]: any) => {
@@ -83,6 +90,7 @@ const PrefCharts = (props:any) => {
                         type="linear"
                         key={key}
                         dataKey={value.prefName}
+                        strokeWidth={3}
                         stroke={'#'+Math.floor(Math.random()*16777215).toString(16)}
                         activeDot={{ r: 8 }}
                     />
