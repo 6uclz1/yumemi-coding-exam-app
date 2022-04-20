@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yumemi-coding-exam-app/static/css/main.105ff39b.css",
+    "main.js": "/yumemi-coding-exam-app/static/js/main.4d2f2063.js",
+    "static/js/787.abd4c7cd.chunk.js": "/yumemi-coding-exam-app/static/js/787.abd4c7cd.chunk.js",
+    "index.html": "/yumemi-coding-exam-app/index.html",
+    "main.105ff39b.css.map": "/yumemi-coding-exam-app/static/css/main.105ff39b.css.map",
+    "main.4d2f2063.js.map": "/yumemi-coding-exam-app/static/js/main.4d2f2063.js.map",
+    "787.abd4c7cd.chunk.js.map": "/yumemi-coding-exam-app/static/js/787.abd4c7cd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.105ff39b.css",
+    "static/js/main.4d2f2063.js"
+  ]
+}
