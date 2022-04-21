@@ -1,0 +1,23 @@
+.PrefCheckbox {
+  text-align: left;
+  padding-left: 76px;
+  width: 90%;
+  height: 90%;
+}
+
+.PrefCheckbox-container {
+  text-align: left;
+  height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 25px;
+  border: 1px solid;
+  border-radius: 16px;
+}
+
+.Checkbox {
+  margin: 1px;
+}
+
