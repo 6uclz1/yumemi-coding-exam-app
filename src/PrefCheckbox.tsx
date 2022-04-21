@@ -40,9 +40,9 @@ const PrefCheckbox = () => {
     return (
         <>
         <div className='PrefCheckbox'>
-            <p>
+            {/* <p>
                 現在選択されている値：<b>{checkedValues.join(", ")}</b>
-            </p>
+            </p> */}
             <div className='PrefCheckbox-container'>
                 {prefList.length !== 0 &&
                     prefList.map((prefList: {

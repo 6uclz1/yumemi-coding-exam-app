@@ -62,16 +62,19 @@ const PrefCharts = (props:any) => {
     return (
         <div className='PrefCharts'>
             <div className='PrefCharts-container'>
-            <ResponsiveContainer width={'100%'} height={600}>
+            <ResponsiveContainer width={'100%'} height={480}>
                 <LineChart
-                    width={1200}
-                    height={600}
                     data={graphData}
-                    margin={{top: 30, right: 40, left: 30, bottom: 10 }}
+                    margin={{ top: 30, bottom: 10, right: 5 }}
                 >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" height={30} padding={{ left: 30, right: 30 }} angle={-20} />
-                <YAxis padding={{ top: 20, bottom: 20 }} />
+                <XAxis
+                    dataKey="year"
+                    tick={{fontSize: 10}}
+                />
+                <YAxis
+                    tick={{fontSize: 10}}
+                />
                 <Tooltip />
                 <Legend />
                 {Object.entries(props.prefList).map(([key, value]: any) => {
