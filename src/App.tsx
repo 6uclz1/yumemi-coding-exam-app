@@ -6,7 +6,9 @@ import PrefCheckbox from "./PrefCheckbox";
 export default function App() {
   return (
     <div className="App">
-      <PrefCheckbox />
+      <div className="App-container">
+        <PrefCheckbox />
+      </div>
     </div>
 
   );

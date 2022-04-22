@@ -2,14 +2,14 @@ import React, {useState, useLayoutEffect } from 'react'
 import "./PrefCharts.css";
 
 import {
-    LineChart,
     Line,
     XAxis,
     YAxis,
     CartesianGrid,
     Tooltip,
     Legend,
-    ResponsiveContainer
+    ResponsiveContainer,
+    ComposedChart
   } from "recharts";
 
 const fetchCatFactsData = async (setGraphData:any, props:any) => {
@@ -63,9 +63,9 @@ const PrefCharts = (props:any) => {
         <div className='PrefCharts'>
             <div className='PrefCharts-container'>
             <ResponsiveContainer width={'100%'} height={480}>
-                <LineChart
+                <ComposedChart
                     data={graphData}
-                    margin={{ top: 30, bottom: 10, right: 5 }}
+                    margin={{ top: 30, bottom: 10, right: 10, left: 10 }}
                 >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
@@ -91,7 +91,7 @@ const PrefCharts = (props:any) => {
                     );
                 })
                 }
-                </LineChart>
+                </ComposedChart>
             </ResponsiveContainer>
             </div>
 
