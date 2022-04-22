@@ -3,8 +3,7 @@
   justify-content: center;
 }
 
-.App-container{
-  /* display: inline-block; */
+.App-container {
   width: 90%;
   display: flex;
   flex-direction: column;
