@@ -31,5 +31,4 @@ export const itemStyle: React.CSSProperties = {
   // textShadow: "2px 3px 4px #ccc",
   fontSize: "14px",
   fontWeight: "bold",
-  textAlign: "center",
 };
