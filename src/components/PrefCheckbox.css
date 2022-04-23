@@ -1,0 +1,68 @@
+.PrefCheckbox {
+  text-align: left;
+  margin-bottom: 75px;
+  margin-top: 32px;
+}
+
+.PrefCheckbox-container {
+  text-align: left;
+  height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 16px 24px 16px 24px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 2px 3px #cccccc;
+  background-color: #f2f2f2;
+  border-radius: 16px;
+}
+
+.PrefCheckboxInfo-container {
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+.CheckboxLabel {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 10px 3px 30px;
+  position: relative;
+}
+.CheckboxLabel::before {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  content: "";
+  display: block;
+  height: 16px;
+  left: 5px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  box-shadow: 3px 2px 3px #cccccc;
+}
+.CheckboxLabel::after {
+  border-right: 6px solid #cc0e00;
+  border-bottom: 3px solid #cc007e;
+  content: "";
+  display: block;
+  height: 20px;
+  left: 7px;
+  margin-top: -16px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 9px;
+}
+input[type="checkbox"]:checked + .CheckboxLabel::before {
+  border-color: #666;
+}
+input[type="checkbox"]:checked + .CheckboxLabel::after {
+  opacity: 1;
+}
