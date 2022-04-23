@@ -1,20 +1,28 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { getPrefectures } from "../util/API";
+// npm library
+import React, { useState, useCallback, useMemo } from "react";
+
+// module
+import { fetchPrefData } from "../module/fetchPrefData";
+
+// components
 import PrefCharts from "./PrefCharts";
+
+// style
 import "./PrefCheckbox.css";
 
+type PrefType = {
+  prefCode: number;
+  prefName: string;
+};
+
 const PrefCheckbox = () => {
-  type PrefType = {
-    prefCode: number;
-    prefName: string;
-  };
   const [prefList, setPrefList] = useState<Array<PrefType>>([]);
   const [selectPrefList, setSelectPrefList] = useState<Array<PrefType>>([]);
-
   const [checkedValues, setCheckedValues] = useState<Array<String>>([]);
 
   const handleChange = useCallback(
     (e: any) => {
+      // 選択済みのチェックボックスを選択した場合
       if (checkedValues.includes(e.target.value)) {
         const selectPref: Array<PrefType> = selectPrefList.filter(
           (selectPref: PrefType) => selectPref.prefName !== e.target.value
@@ -22,6 +30,7 @@ const PrefCheckbox = () => {
         setCheckedValues(selectPref.map((v) => v.prefName));
         setSelectPrefList(selectPref);
       } else {
+        // 選択していないチェックボックスを選択した場合
         setCheckedValues([...checkedValues, e.target.value]);
         const pref: PrefType = prefList.filter(
           (prefList) => prefList.prefName === e.target.value
@@ -35,14 +44,8 @@ const PrefCheckbox = () => {
     [checkedValues, prefList]
   );
 
-  const fetchData = async () => {
-    const results: any = await getPrefectures();
-    const prefectures: PrefType[] = results.result;
-    setPrefList(prefectures);
-  };
-
-  useEffect(() => {
-    fetchData();
+  useMemo(() => {
+    fetchPrefData(setPrefList);
   }, []);
 
   return (

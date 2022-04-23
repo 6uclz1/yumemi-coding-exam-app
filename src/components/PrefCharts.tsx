@@ -1,8 +1,5 @@
-import React, { useState, useLayoutEffect } from "react";
-import "./PrefCharts.css";
-
-// import { getPerYear } from "../util/API";
-
+// npm library
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Line,
   XAxis,
@@ -13,7 +10,13 @@ import {
   ResponsiveContainer,
   LineChart,
 } from "recharts";
+
+// module
 import { fetchPopulationData } from "../module/fetchPopulationGraphData";
+
+// style
+import "./PrefCharts.css";
+import { contentStyle, itemStyle, labelStyle } from "../style/Chart";
 
 type PrefType = {
   prefCode: number;
@@ -22,7 +25,7 @@ type PrefType = {
 type PropsType = {
   prefList: Array<PrefType>;
 };
-type gDataType = {
+type ChartDataType = {
   [key: string]: number;
 };
 let lines: string[] = [];
@@ -33,45 +36,69 @@ const pushLines = (props: PropsType) => {
     lines.push(pref.prefName);
   }
 };
+/**
+ * 都道府県の人口数の表を表示する
+ *
+ * @param props Props
+ * @param {PropsType} props.prefList 都道府県リスト
+ * @returns {React.ReactElement} JSX
+ */
+const PrefCharts = (props: PropsType): React.ReactElement => {
+  const [chartData, setChartData] = useState<Array<ChartDataType>>([]);
 
-const PrefCharts = (props: PropsType) => {
-  const [graphData, setGraphData] = useState<Array<gDataType>>([]);
+  useMemo(() => {
+    fetchPopulationData(setChartData, props);
+  }, [props]);
 
-  useLayoutEffect(() => {
-    fetchPopulationData(setGraphData, props);
+  useEffect(() => {
     pushLines(props);
   }, [props]);
 
   return (
     <div className="PrefCharts">
       <div className="PrefCharts-container">
-        <ResponsiveContainer width={"99%"} height={480}>
+        <ResponsiveContainer width={"99%"} height={560}>
           <LineChart
-            data={graphData}
+            data={chartData}
             margin={{ top: 30, bottom: 10, right: 10, left: 10 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="year"
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: 10, fontWeight: "bold" }}
               padding={{ left: 10, right: 10 }}
+              label={{
+                value: "（年）",
+                position: "insideBottom",
+                fontSize: 10,
+              }}
             />
             <YAxis
-              tick={{ fontSize: 10 }}
+              tick={{ fontSize: 10, fontWeight: "bold" }}
               padding={{ top: 10 }}
               tickFormatter={(tick) => {
                 return tick.toLocaleString();
+              }}
+              label={{
+                value: "（人）",
+                position: "top",
+                fontSize: 10,
+                offset: 4,
               }}
             />
             <Tooltip
               formatter={(value: any) => {
                 return value.toLocaleString() + "人";
               }}
+              labelFormatter={(label: any) => label + "年"}
+              labelStyle={labelStyle}
+              contentStyle={contentStyle}
+              itemStyle={itemStyle}
             />
-            <Legend />
+            <Legend chartHeight={560} />
             {lines.map((line, index) => {
-              const h = index * (360 / 12);
-              const strokeColor = `hsl(${h},70%,50%)`;
+              const h = index * 30;
+              const strokeColor = `hsl(${h},100%,35%)`;
               return (
                 <Line
                   type="linear"

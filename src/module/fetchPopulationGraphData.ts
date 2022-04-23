@@ -1,25 +1,22 @@
 import React from "react";
 import { getPerYear } from "../util/API";
+import { PrefectureType } from "../types/api/api";
 
-type PrefType = {
-  prefCode: number;
-  prefName: string;
-};
 type PropsType = {
-  prefList: Array<PrefType>;
+  prefList: Array<PrefectureType>;
 };
-type gDataType = {
+type PopulationDataType = {
+  year: number;
+  value: number;
+};
+type ChartDataType = {
   [key: string]: number;
 };
 
 export const fetchPopulationData = async (
-  setGraphData: React.Dispatch<React.SetStateAction<gDataType[]>>,
+  setGraphData: React.Dispatch<React.SetStateAction<ChartDataType[]>>,
   props: PropsType
 ) => {
-  type PopulationDataType = {
-    year: number;
-    value: number;
-  };
   const workMap: any = {};
 
   for (const pref of props.prefList) {
@@ -29,6 +26,7 @@ export const fetchPopulationData = async (
       results.result.data[0].data;
     populationDataList.forEach((populationData: PopulationDataType) => {
       const year: number = populationData.year;
+      // まだその年のキーが存在しない場合、キーを作成する
       if (typeof workMap[year] === "undefined") {
         workMap[year] = {};
         workMap[year].year = year;
@@ -36,9 +34,14 @@ export const fetchPopulationData = async (
       workMap[year][pref.prefName] = populationData.value;
     });
   }
-  const gDataList: Array<gDataType> = [];
+  const chartData: Array<ChartDataType> = createChartData(workMap);
+  setGraphData(chartData);
+};
+
+const createChartData = (workMap: { [x: string]: ChartDataType }) => {
+  const chartData: Array<ChartDataType> = [];
   for (const workKey in workMap) {
-    gDataList.push(workMap[workKey]);
+    chartData.push(workMap[workKey]);
   }
-  setGraphData(gDataList);
+  return chartData;
 };
