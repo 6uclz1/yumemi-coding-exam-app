@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import "./PrefCharts.css";
 
-import { getPerYear } from "../util/API";
+// import { getPerYear } from "../util/API";
 
 import {
   Line,
@@ -13,6 +13,7 @@ import {
   ResponsiveContainer,
   LineChart,
 } from "recharts";
+import { fetchPopulationData } from "../module/fetchPopulationGraphData";
 
 type PrefType = {
   prefCode: number;
@@ -25,65 +26,20 @@ type gDataType = {
   [key: string]: number;
 };
 let lines: string[] = [];
-const fetchPopulationData = async (
-  setGraphData: React.Dispatch<React.SetStateAction<gDataType[]>>,
-  props: PropsType
-) => {
-  type PopulationDataType = {
-    year: number;
-    value: number;
-  };
-  const workMap: any = {};
 
+const pushLines = (props: PropsType) => {
   lines = [];
   for (const pref of props.prefList) {
-    const results: any = await getPerYear(pref.prefCode);
-
     lines.push(pref.prefName);
-    const populationDataList: PopulationDataType[] =
-      results.result.data[0].data;
-    populationDataList.forEach((populationData: PopulationDataType) => {
-      const year: number = populationData.year;
-      if (typeof workMap[year] === "undefined") {
-        workMap[year] = {};
-        workMap[year].year = year;
-      }
-      workMap[year][pref.prefName] = populationData.value;
-    });
   }
-  const gDataList: Array<gDataType> = [];
-  for (const workKey in workMap) {
-    gDataList.push(workMap[workKey]);
-  }
-  setGraphData(gDataList);
 };
 
 const PrefCharts = (props: PropsType) => {
   const [graphData, setGraphData] = useState<Array<gDataType>>([]);
 
-  // const CustomTooltip = ({ active, payload, label }: any) => {
-  //   if (active && payload && payload.length) {
-  //     return (
-  //       <div>
-  //         <p className="label">{`${label}`}</p>
-  //         {payload.map((v: any, index: any) => {
-  //           // const h = index * (360 / 12);
-  //           // const strokeColor = `hsl(${h},70%,50%)`;
-  //           console.log(v);
-  //           return (
-  //             <p className="label" key={index}>
-  //               {`${v.dataKey}: ${v.value.toLocaleString()} 人`}
-  //             </p>
-  //           );
-  //         })}
-  //       </div>
-  //     );
-  //   }
-  //   return null;
-  // };
-
   useLayoutEffect(() => {
     fetchPopulationData(setGraphData, props);
+    pushLines(props);
   }, [props]);
 
   return (
@@ -98,7 +54,6 @@ const PrefCharts = (props: PropsType) => {
             <XAxis
               dataKey="year"
               tick={{ fontSize: 10 }}
-              // a={}
               padding={{ left: 10, right: 10 }}
             />
             <YAxis
@@ -109,7 +64,6 @@ const PrefCharts = (props: PropsType) => {
               }}
             />
             <Tooltip
-              // content={<CustomTooltip />}
               formatter={(value: any) => {
                 return value.toLocaleString() + "人";
               }}
