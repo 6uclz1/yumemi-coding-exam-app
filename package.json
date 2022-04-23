@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "coverage": "jest --coverage"
+    "coverage": "jest"
   },
   "jest": {
     "collectCoverageFrom": [
