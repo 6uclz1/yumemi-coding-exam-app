@@ -33,7 +33,7 @@ export const wrapperStyle: React.CSSProperties = {
   borderRight: "solid 3px #ccc",
   borderTop: "solid 1px #ccc",
   borderLeft: "solid 1px #ccc",
-  padding: "12px",
+  padding: "10px 0px 10px 0px",
   borderRadius: "8px",
   fontSize: "12px",
   fontWeight: "bold",
