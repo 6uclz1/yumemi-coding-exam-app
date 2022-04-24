@@ -22,28 +22,38 @@ npm で必要なパッケージを取得してきます。
 
 使用できる `npm` スクリプト
 
+[create-react-app](https://facebook.github.io/create-react-app)
+のコマンドが使用できます。
+
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm start`で Web アプリが起動します。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[http://localhost:3000](http://localhost:3000)
+の URL を規定のブラウザが自動で開きます。
+
+なにかコード上で変更があるとリロードされます。
+
+入力していた情報は残るので、
+初期表示時の挙動を確認したい場合は手動で更新してください。
+
+`lint`のエラーがある場合、コンソール上に表示されます。
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ユニットテストを実行します。
+詳しくは以下のドキュメントを参照してください。
+
+[create-react-app running tests docs](https://facebook.github.io/create-react-app/docs/running-tests)
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+アプリのビルドを行います。
+生成物は`./build`フォルダに置かれます。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+詳しくは以下のドキュメントを参照してください。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[create-react-app deployment docs](https://facebook.github.io/create-react-app/docs/deployment)
 
 ## GitHub Actions
 
@@ -58,3 +68,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 CodeQL analysis.
 
 GitHub の設定をそのまま適用。
+
+## Todo
+
+- [ ] 選択したチェックボックスを外し、かつ全てのチェックボックスが未選択だった場合、注釈の部分が残ったままになってしまう
+- [ ] チェックボックス選択後の挙動がおかしい場合がある（アニメーションが走らない）
+- [ ] ツールチップ（グラフにマウスオーバーした際、表示される情報）に画面の縦幅を上回る情報を表示した場合（都道府県を 47 つ選択した際など）、画面のスクロール領域の関係上ガクガクしたりする挙動が発生する
+- [] RESAS の API キーを平文で入れているので、第三者が API キーを見ることができてしまう。（これに関しては GitHub Pages が静的サイトしかデプロイできないので対応が難しい）
