@@ -37,6 +37,7 @@ const pushLines = (props: { prefList: PrefectureType[] }) => {
     lines.push({ prefCode: pref.prefCode, prefName: pref.prefName });
   }
 };
+
 /**
  * 都道府県の人口数の表を表示する
  *
