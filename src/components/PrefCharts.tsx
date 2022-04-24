@@ -16,7 +16,12 @@ import { fetchPopulationData } from "../module/fetchPopulationGraphData";
 
 // style
 import "./PrefCharts.css";
-import { contentStyle, itemStyle, labelStyle } from "../style/Chart";
+import {
+  contentStyle,
+  itemStyle,
+  labelStyle,
+  wrapperStyle,
+} from "../style/Chart";
 
 type PrefType = {
   prefCode: number;
@@ -57,10 +62,10 @@ const PrefCharts = (props: PropsType): React.ReactElement => {
   return (
     <div className="PrefCharts">
       <div className="PrefCharts-container">
-        <ResponsiveContainer width={"99%"} height={560}>
+        <ResponsiveContainer width={"99%"} height={640}>
           <LineChart
             data={chartData}
-            margin={{ top: 30, bottom: 10, right: 10, left: 10 }}
+            margin={{ top: 30, bottom: 30, right: 10, left: 10 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -69,9 +74,11 @@ const PrefCharts = (props: PropsType): React.ReactElement => {
               padding={{ left: 10, right: 10 }}
               label={{
                 value: "（年）",
-                position: "insideBottom",
+                position: "insideBottomRight",
                 fontSize: 10,
+                offset: 10,
               }}
+              height={40}
             />
             <YAxis
               tick={{ fontSize: 10, fontWeight: "bold" }}
@@ -95,17 +102,21 @@ const PrefCharts = (props: PropsType): React.ReactElement => {
               contentStyle={contentStyle}
               itemStyle={itemStyle}
             />
-            <Legend chartHeight={560} />
+            <Legend
+              // chartHeight={560}
+              // height={40}
+              // margin={{ top: 100, left: 0, right: 0, bottom: 0 }}
+              iconType={"line"}
+              wrapperStyle={wrapperStyle}
+            />
             {lines.map((line, index) => {
-              const h = index * 30;
-              const strokeColor = `hsl(${h},100%,35%)`;
               return (
                 <Line
                   type="linear"
                   key={index}
                   dataKey={line}
                   strokeWidth={3}
-                  stroke={strokeColor}
+                  stroke={`hsl(${index * 30},100%,35%)`}
                   activeDot={{ r: 4 }}
                 />
               );
