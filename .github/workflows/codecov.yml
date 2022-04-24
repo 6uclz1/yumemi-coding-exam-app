@@ -36,6 +36,6 @@ jobs:
         with:
           artifact: test-results
           name: JEST Tests
-          token: ${{ secrets.CODECOV_TOKEN }}
+          # token: ${{ secrets.CODECOV_TOKEN }}
           path: "./junit.xml"
           reporter: jest-junit
