@@ -3,7 +3,6 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
-    "jest/globals": true,
   },
   extends: ["plugin:react/recommended", "standard", "prettier"],
   parser: "@typescript-eslint/parser",
@@ -14,6 +13,6 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "jest"],
+  plugins: ["react", "@typescript-eslint"],
   rules: {},
 };

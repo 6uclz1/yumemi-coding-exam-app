@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useMemo } from "react";
 
 // module
-import { fetchPrefData } from "../module/fetchPrefData";
+import { fetchPrefData } from "../module/FetchPrefData";
 
 // components
 import PrefCharts from "./PrefCharts";

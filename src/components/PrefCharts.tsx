@@ -1,5 +1,5 @@
 // npm library
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo, useLayoutEffect } from "react";
 import {
   Line,
   XAxis,
@@ -12,10 +12,10 @@ import {
 } from "recharts";
 
 // module
-import { fetchPopulationData } from "../module/fetchPopulationGraphData";
+import { fetchPopulationData } from "../module/FetchPopulationGraphData";
 
 // style
-import "./PrefCharts.css";
+import { PrefChartsContainerStyle, PrefChartsStyle } from "../style/Style";
 import {
   contentStyle,
   itemStyle,
@@ -23,22 +23,18 @@ import {
   wrapperStyle,
 } from "../style/Chart";
 
-type PrefType = {
-  prefCode: number;
-  prefName: string;
-};
-type PropsType = {
-  prefList: Array<PrefType>;
-};
+// type
+import { PrefectureType } from "../types/api/api";
+
 type ChartDataType = {
   [key: string]: number;
 };
-let lines: string[] = [];
+let lines: PrefectureType[] = [];
 
-const pushLines = (props: PropsType) => {
+const pushLines = (props: { prefList: PrefectureType[] }) => {
   lines = [];
   for (const pref of props.prefList) {
-    lines.push(pref.prefName);
+    lines.push({ prefCode: pref.prefCode, prefName: pref.prefName });
   }
 };
 /**
@@ -48,20 +44,22 @@ const pushLines = (props: PropsType) => {
  * @param {PropsType} props.prefList 都道府県リスト
  * @returns {React.ReactElement} JSX
  */
-const PrefCharts = (props: PropsType): React.ReactElement => {
+const PrefCharts = (props: {
+  prefList: PrefectureType[];
+}): React.ReactElement => {
   const [chartData, setChartData] = useState<Array<ChartDataType>>([]);
 
   useMemo(() => {
     fetchPopulationData(setChartData, props);
   }, [props]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     pushLines(props);
-  }, [props]);
+  }, [props, chartData]);
 
   return (
-    <div className="PrefCharts">
-      <div className="PrefCharts-container">
+    <div style={PrefChartsStyle}>
+      <div style={PrefChartsContainerStyle}>
         <ResponsiveContainer width={"99%"} height={640}>
           <LineChart
             data={chartData}
@@ -108,9 +106,9 @@ const PrefCharts = (props: PropsType): React.ReactElement => {
                 <Line
                   type="linear"
                   key={index}
-                  dataKey={line}
+                  dataKey={line.prefName}
                   strokeWidth={3}
-                  stroke={`hsl(${index * 30},100%,35%)`}
+                  stroke={`hsl(${line.prefCode * 30},100%,35%)`}
                   activeDot={{ r: 4 }}
                 />
               );
