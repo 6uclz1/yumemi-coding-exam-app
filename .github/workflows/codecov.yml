@@ -25,17 +25,17 @@ jobs:
       - name: Run Test
         run: npm run test:ci
 
-      # - name: Upload Coverage
-      #   uses: codecov/codecov-action@v3
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     files: ./junit.xml
-
-      - name: Test Reporter
-        uses: dorny/test-reporter@v1
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
         with:
-          artifact: test-results
-          name: JEST Tests
-          # token: ${{ secrets.CODECOV_TOKEN }}
-          path: "./junit.xml"
-          reporter: jest-junit
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./junit.xml
+
+      # - name: Test Reporter
+      #   uses: dorny/test-reporter@v1
+      #   with:
+      #     artifact: test-results
+      #     name: JEST Tests
+      #     # token: ${{ secrets.CODECOV_TOKEN }}
+      #     path: "./junit.xml"
+      #     reporter: jest-junit
