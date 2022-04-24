@@ -41,7 +41,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./junit.xml
+          files: ./coverage/*.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
