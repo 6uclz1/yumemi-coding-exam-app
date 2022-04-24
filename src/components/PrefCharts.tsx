@@ -102,13 +102,7 @@ const PrefCharts = (props: PropsType): React.ReactElement => {
               contentStyle={contentStyle}
               itemStyle={itemStyle}
             />
-            <Legend
-              // chartHeight={560}
-              // height={40}
-              // margin={{ top: 100, left: 0, right: 0, bottom: 0 }}
-              iconType={"line"}
-              wrapperStyle={wrapperStyle}
-            />
+            <Legend wrapperStyle={wrapperStyle} />
             {lines.map((line, index) => {
               return (
                 <Line

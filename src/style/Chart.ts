@@ -3,8 +3,6 @@ import React from "react";
 export const labelStyle: React.CSSProperties = {
   borderBottom: "solid 3px #ccc",
   borderRight: "solid 3px #ccc",
-  // borderTop: "solid 1px #aaa",
-  // borderLeft: "solid 1px #aaa",
   width: "60px",
   height: "24px",
   padding: "2px 1px 1px 5px",
@@ -23,12 +21,9 @@ export const contentStyle: React.CSSProperties = {
 export const itemStyle: React.CSSProperties = {
   borderBottom: "solid 3px #ccc",
   borderRight: "solid 3px #ccc",
-  // borderTop: "solid 1px #aaa",
-  // borderLeft: "solid 1px #aaa",
   margin: "12px",
   borderRadius: "8px",
   padding: "2px 10px 5px 5px",
-  // textShadow: "2px 3px 4px #ccc",
   fontSize: "14px",
   fontWeight: "bold",
 };
@@ -38,11 +33,8 @@ export const wrapperStyle: React.CSSProperties = {
   borderRight: "solid 3px #ccc",
   borderTop: "solid 1px #ccc",
   borderLeft: "solid 1px #ccc",
-  margin: "1px",
+  padding: "12px",
   borderRadius: "8px",
-  // padding: "2px 10px 5px 5px",
-  padding: "10px",
-  // textShadow: "2px 3px 4px #ccc",
   fontSize: "12px",
   fontWeight: "bold",
 };

@@ -10,9 +10,6 @@
 }
 
 .description {
-  /* text-align: center;
-  display: flex;
-  justify-content: center; */
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -20,5 +17,4 @@
   padding: 12px 12px 12px 24px;
   border-radius: 16px;
   box-shadow: 3px 2px 3px #ccc;
-  /* text- */
 }
