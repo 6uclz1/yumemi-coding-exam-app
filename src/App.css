@@ -4,7 +4,21 @@
 }
 
 .App-container {
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-direction: column;
+}
+
+.description {
+  /* text-align: center;
+  display: flex;
+  justify-content: center; */
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin: 12px 0px;
+  padding: 12px 12px 12px 24px;
+  border-radius: 16px;
+  box-shadow: 3px 2px 3px #ccc;
+  /* text- */
 }
