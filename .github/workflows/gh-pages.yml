@@ -34,6 +34,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Run Test
+        run: npm run test:ci
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./junit.xml
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
