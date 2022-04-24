@@ -7,9 +7,3 @@ it("renders info message.", () => {
     screen.getByText(/表示したい都道府県を選択してください。/i);
   expect(linkElement).toBeInTheDocument();
 });
-
-it("wrong test.", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/wrong test./i);
-  expect(linkElement).toBeInTheDocument();
-});
