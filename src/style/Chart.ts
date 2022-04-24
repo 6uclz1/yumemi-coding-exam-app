@@ -32,3 +32,17 @@ export const itemStyle: React.CSSProperties = {
   fontSize: "14px",
   fontWeight: "bold",
 };
+
+export const wrapperStyle: React.CSSProperties = {
+  borderBottom: "solid 3px #ccc",
+  borderRight: "solid 3px #ccc",
+  borderTop: "solid 1px #ccc",
+  borderLeft: "solid 1px #ccc",
+  margin: "1px",
+  borderRadius: "8px",
+  // padding: "2px 10px 5px 5px",
+  padding: "10px",
+  // textShadow: "2px 3px 4px #ccc",
+  fontSize: "12px",
+  fontWeight: "bold",
+};
